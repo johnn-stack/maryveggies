@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5ef">
+  <title>MARY VEGGIES — Good food, grown close</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f5ef;
+      --ink: #20291e;
+      --muted: #77796e;
+      --line: #deded2;
+      --green: #284b35;
+      --lime: #d7e878;
+      --tomato: #d95138;
+      --white: #fffefa;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    .contact-banner { padding: 12px 20px; background: var(--lime); color: var(--green); text-align: center; font-size: 15px; font-weight: 700; }
+    .contact-banner a { margin-left: 6px; text-decoration: underline; text-underline-offset: 3px; }
+    .announcement { padding: 9px 20px; background: var(--green); color: white; text-align: center; font-size: 11px; letter-spacing: .4px; }
+    .announcement strong { color: var(--lime); font-weight: 600; }
+    .site-header { position: sticky; z-index: 5; top: 0; border-bottom: 1px solid var(--line); background: var(--paper); }
+    .header-inner { width: min(1240px, calc(100% - 64px)); height: 76px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; letter-spacing: .7px; white-space: nowrap; }
+    .brand-mark { display: grid; width: 34px; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--lime); color: var(--green); }
+    .brand-mark svg { width: 20px; height: 20px; }
+    .main-nav { display: flex; align-items: center; gap: 30px; color: #565a4f; font-size: 13px; }
+    .main-nav a:hover { color: var(--tomato); }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .icon-button, .cart-button { border: 0; background: transparent; cursor: pointer; }
+    .icon-button { display: grid; width: 42px; aspect-ratio: 1; place-items: center; }
+    .icon-button svg { width: 19px; height: 19px; }
+    .cart-button { display: flex; align-items: center; gap: 10px; padding: 11px 15px; border: 1px solid var(--line); border-radius: 3px; font-size: 12px; font-weight: 600; }
+    .cart-button svg { width: 17px; height: 17px; }
+    .cart-count { display: grid; min-width: 20px; height: 20px; padding: 0 5px; place-items: center; border-radius: 50%; background: var(--lime); font-size: 10px; }
+    main { width: min(1240px, calc(100% - 64px)); margin: 0 auto; }
+    .hero { position: relative; min-height: 354px; margin: 28px 0 37px; overflow: hidden; background: var(--green); color: white; }
+    .hero-copy { position: relative; z-index: 1; width: 55%; padding: 46px 0 42px 52px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--lime); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .eyebrow::before { width: 20px; height: 1px; background: currentColor; content: ""; }
+    h1 { max-width: 500px; margin: 17px 0 13px; font-family: var(--serif); font-size: clamp(38px, 5vw, 57px); font-weight: 500; line-height: 1.06; }
+    h1 em { color: var(--lime); font-weight: 500; }
+    .hero-copy p { max-width: 365px; margin: 0; color: #d6dfd1; font-size: 13px; line-height: 1.7; }
+    .hero-link { display: inline-flex; align-items: center; gap: 12px; margin-top: 23px; padding-bottom: 5px; border-bottom: 1px solid var(--lime); color: var(--lime); font-size: 12px; font-weight: 600; }
+    .hero-link svg { width: 15px; height: 15px; }
+    .cook-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 18px;
+      margin-left: 12px;
+      padding: 12px 18px;
+      border: 1px solid var(--tomato);
+      background: transparent;
+      color: var(--tomato);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .hero-image { position: absolute; inset: 0 0 0 52%; background: linear-gradient(90deg, var(--green) 0%, transparent 31%), url("https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=85") center 52% / cover; }
+    .hero-note { position: absolute; right: 21px; bottom: 19px; padding: 9px 12px; background: var(--lime); color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .3px; }
+    .promise-row { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0 0 43px; border-bottom: 1px solid var(--line); }
+    .promise { display: flex; align-items: center; gap: 12px; padding: 0 18px 20px; }
+    .promise:first-child { padding-left: 0; }
+    .promise-icon { display: grid; width: 35px; aspect-ratio: 1; flex: 0 0 auto; place-items: center; border: 1px solid #d5d9c8; border-radius: 50%; color: var(--green); }
+    .promise-icon svg { width: 17px; height: 17px; }
+    .promise strong { display: block; font-size: 11px; }
+    .promise span { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
+    .shop-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+    .shop-heading h2 { margin: 0; font-family: var(--serif); font-size: 32px; font-weight: 500; }
+    .shop-heading p { margin: 6px 0 0; color: var(--muted); font-size: 12px; }
+    .search-wrap { position: relative; width: min(250px, 40%); }
+    .search-wrap svg { position: absolute; top: 50%; left: 12px; width: 16px; height: 16px; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+    .search-wrap input { width: 100%; height: 39px; padding: 0 12px 0 37px; border: 1px solid var(--line); border-radius: 2px; outline: none; background: transparent; font-size: 11px; }
+    .search-wrap input:focus { border-color: var(--green); }
+    .filters { display: flex; gap: 8px; margin-bottom: 22px; overflow-x: auto; scrollbar-width: none; }
+    .filters::-webkit-scrollbar { display: none; }
+    .filter-button { flex: 0 0 auto; padding: 8px 14px; border: 1px solid var(--line); border-radius: 2px; background: transparent; cursor: pointer; font-size: 11px; }
+    .filter-button:hover, .filter-button.active { border-color: var(--green); background: var(--green); color: white; }
+    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 27px 18px; padding-bottom: 66px; }
+    .product-card { min-width: 0; animation: arrive .35s ease both; }
+    @keyframes arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .product-image-wrap { position: relative; aspect-ratio: 1 / 1.03; overflow: hidden; background: #e9e9df; }
+    .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+    .product-card:hover .product-image { transform: scale(1.045); }
+    .product-tag { position: absolute; top: 11px; left: 11px; padding: 6px 8px; background: var(--white); color: var(--green); font-size: 9px; font-weight: 700; letter-spacing: .3px; text-transform: uppercase; }
+    .add-button { position: absolute; right: 10px; bottom: 10px; display: grid; width: 38px; aspect-ratio: 1; place-items: center; border: 0; border-radius: 50%; background: var(--lime); color: var(--green); cursor: pointer; transition: transform .18s ease, background .18s ease; }
+    .add-button:hover { transform: scale(1.08); background: white; }
+    .add-button svg { width: 18px; height: 18px; }
+    .product-info { padding: 12px 1px 0; }
+    .product-category { color: var(--muted); font-size: 9px; letter-spacing: .8px; text-transform: uppercase; }
+    .product-name-line { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-top: 5px; }
+    .product-name { font-family: var(--serif); font-size: 17px; font-weight: 600; }
+    .product-price { flex: 0 0 auto; font-size: 12px; font-weight: 700; }
+    .product-unit { margin-top: 4px; color: var(--muted); font-size: 10px; }
+    .no-results { grid-column: 1 / -1; padding: 50px 0; color: var(--muted); text-align: center; font-size: 13px; }
+    footer { background: #e9eadf; }
+    .footer-inner { display: flex; width: min(1240px, calc(100% - 64px)); min-height: 84px; margin: auto; align-items: center; justify-content: space-between; gap: 20px; color: #64695b; font-size: 10px; }
+    .footer-inner .brand { color: var(--ink); font-size: 13px; }
+    .overlay { position: fixed; z-index: 9; inset: 0; visibility: hidden; background: #12181077; opacity: 0; transition: opacity .22s, visibility .22s; }
+    .overlay.open { visibility: visible; opacity: 1; }
+    .cart-drawer { position: fixed; z-index: 10; top: 0; right: 0; display: flex; width: min(410px, 100%); height: 100dvh; flex-direction: column; padding: 25px; background: var(--paper); transform: translateX(102%); transition: transform .28s ease; }
+    .cart-drawer.open { transform: translateX(0); }
+    .drawer-heading { display: flex; align-items: center; justify-content: space-between; padding-bottom: 17px; border-bottom: 1px solid var(--line); }
+    .drawer-heading h2 { margin: 0; font-family: var(--serif); font-size: 25px; font-weight: 500; }
+    .close-button { display: grid; width: 38px; aspect-ratio: 1; place-items: center; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+    .close-button svg { width: 17px; height: 17px; }
+    .cart-items { flex: 1; overflow-y: auto; }
+    .empty-cart { padding: 42px 0; color: var(--muted); text-align: center; font-size: 12px; }
+    .cart-item { display: grid; grid-template-columns: 63px 1fr auto; gap: 12px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .cart-item img { width: 63px; height: 63px; object-fit: cover; }
+    .cart-item-name { font-family: var(--serif); font-size: 14px; }
+    .cart-item-price { margin-top: 5px; color: var(--muted); font-size: 10px; }
+    .quantity-controls { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .quantity-controls button { display: grid; width: 22px; aspect-ratio: 1; place-items: center; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+    .quantity-controls span { min-width: 12px; text-align: center; font-size: 10px; }
+    .cart-item-total { padding-top: 2px; font-size: 11px; font-weight: 700; }
+    .cart-bottom { padding-top: 18px; border-top: 1px solid var(--line); }
+    .payment-form { display: grid; gap: 10px; margin-top: 17px; }
+    .subtotal { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; }
+    .delivery-note { margin: 9px 0 16px; color: var(--muted); font-size: 10px; }
+    .paystack-button { width: 100%; padding: 13px; border: 1px solid var(--green); background: transparent; color: var(--green); cursor: pointer; font-size: 11px; font-weight: 700; }
+    .paystack-button:disabled { cursor: not-allowed; opacity: .45; }
+    .toast { position: fixed; z-index: 12; right: 22px; bottom: 22px; padding: 13px 17px; background: var(--green); color: white; opacity: 0; transform: translateY(10px); transition: .2s ease; pointer-events: none; font-size: 12px; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 760px) {
+      .header-inner, main, .footer-inner { width: min(100% - 36px, 600px); }
+      .header-inner { height: 65px; gap: 12px; }
+      .brand { font-size: 14px; }
+      .main-nav { display: none; }
+      .cart-button { gap: 7px; padding: 9px 10px; }
+      .hero { min-height: 420px; margin-top: 18px; }
+      .hero-copy { width: 100%; padding: 30px 25px; }
+      .hero-image { inset: 46% 0 0; background-image: linear-gradient(180deg, var(--green) 0%, transparent 43%), url("https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85"); }
+      h1 { max-width: 400px; font-size: 43px; }
+      .hero-copy p { max-width: 300px; font-size: 12px; }
+      .hero-link { margin-top: 16px; }
+      .hero-note { right: 12px; bottom: 12px; }
+      .promise-row { gap: 12px; margin-bottom: 33px; }
+      .promise { align-items: flex-start; gap: 7px; padding: 0 0 16px; }
+      .promise-icon { width: 29px; }
+      .promise strong { font-size: 9px; }
+      .promise span { font-size: 9px; line-height: 1.4; }
+      .shop-heading h2 { font-size: 28px; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 13px; }
+      .product-name { font-size: 16px; }
+      .footer-inner { min-height: 76px; }
+    }
+    @media (max-width: 390px) {
+      .header-inner, main, .footer-inner { width: calc(100% - 28px); }
+      .shop-heading { align-items: flex-start; flex-direction: column; gap: 13px; }
+      .search-wrap { width: 100%; }
+      .promise-icon { display: none; }
+      .promise { padding-right: 4px; }
+      .hero { min-height: 438px; }
+      .hero-copy { padding-right: 19px; padding-left: 19px; }
+      h1 { font-size: 39px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; justify-content: center; gap: 7px; padding: 16px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="contact-banner">Contact us: <a href="tel:+254724680265" aria-label="Call Mary Veggies at 0724 680 265">0724 680 265</a></div>
+  <div class="announcement"><strong>FRESH FROM THE FARM</strong> · Local vegetables, packed with care</div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Mary Veggies home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4c-8 0-13 3.8-13 10a6 6 0 0 0 6 6c6.2 0 7-8 7-16Z"/><path d="M4 21c2-5 6-8 11-11"/></svg></span>
+        MARY <span style="font-weight:400">VEGGIES</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation"><a href="#shop">Shop vegetables</a><a href="#our-way">Our way</a><a href="#footer">Contact</a></nav>
+      <div class="header-actions">
+        <button class="icon-button" id="search-focus" aria-label="Focus product search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4 4"/></svg></button>
+        <button class="cart-button" id="open-cart" aria-label="Open shopping basket"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span>Basket</span><span class="cart-count" id="cart-count">0</span></button>
+      </div>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy"><span class="eyebrow">Fresh · Local · Good for you</span><h1 id="hero-title">Good food starts<br><em>with fresh veggies.</em></h1><p>Bring home farm-fresh vegetables and tasty veggie packs from MARY VEGGIES.</p><a class="hero-link" href="#shop">Shop this week's harvest <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="cook-button" href="cook.html">How to Cook</a></div>
+      <div class="hero-image" role="img" aria-label="A colorful table of fresh vegetables"></div><span class="hero-note">FRESHNESS YOU CAN TASTE</span>
+    </section>
+    <section class="promise-row" id="our-way" aria-label="Our promises">
+      <div class="promise"><span class="promise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s8-4 8-11V5l-8-3-8 3v5c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><strong>Grown with care</strong><span>Small farms, good soil</span></div></div>
+      <div class="promise"><span class="promise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h2l2-7h8l2 7h4"/><path d="M5 17a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0M7 10l2-5h6l2 5"/></svg></span><div><strong>Picked this week</strong><span>Fresh really means fresh</span></div></div>
+      <div class="promise"><span class="promise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18m-8-8 8-8 8 8"/><path d="M4 13c4 0 8 2 8 8 0-6 4-8 8-8"/></svg></span><div><strong>Close to home</strong><span>Supporting local growers</span></div></div>
+    </section>
+    <section id="shop" aria-labelledby="shop-title">
+      <div class="shop-heading"><div><h2 id="shop-title">Our vegetables</h2><p>Fresh picks, ready for your kitchen.</p></div><label class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4 4"/></svg><input type="search" id="product-search" placeholder="Find your favorites..." aria-label="Search vegetables"></label></div>
+      <div class="filters" id="filters" role="group" aria-label="Filter by produce category"></div>
+      <div class="product-grid" id="product-grid" aria-live="polite"></div>
+    </section>
+    <section id="customized-basket" aria-labelledby="customized-title">
+      <div class="shop-heading"><div><h2 id="customized-title">Customized Basket</h2><p>Build your mix with fresh kitchen essentials.</p></div></div>
+      <div class="product-grid custom-product-grid" id="custom-product-grid" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer id="footer"><div class="footer-inner"><a class="brand" href="#top">MARY VEGGIES</a><span>Freshness you can taste.</span><span>Pay securely with Paystack</span><span>Contact: <a href="tel:+254724680265">0724 680 265</a></span><span></span>© 2026</span></div></footer>
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping basket" aria-hidden="true">
+    <div class="drawer-heading"><h2>Your basket <span id="drawer-count" style="font: 500 13px var(--sans); color:var(--muted)">(0)</span></h2><button class="close-button" id="close-cart" aria-label="Close basket"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-bottom">
+      <div class="subtotal"><span>Total</span><span id="subtotal">KSh 0</span></div>
+      <div class="payment-form">
+        <button class="paystack-button" id="paystack-checkout" type="button" disabled>Pay with Paystack</button>
+      </div>
+    </div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    const products = [
+      { name: "Broccoli", category: "Vegetables", price: 200, unit: "per kg", tag: "Fresh pick", image: "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=700&q=80" },
+      { name: "Cauliflower", category: "Vegetables", price: 150, unit: "per kg", tag: "Farm fresh", image: "https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=700&q=80" },
+      { name: "Carrot", category: "Vegetables", price: 90, unit: "per kg", tag: "Fresh pick", image: "https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=700&q=80" },
+      { name: "Codget", category: "Vegetables", price: 160, unit: "per kg", tag: "Crisp & fresh", image: "https://images.unsplash.com/photo-1604977042946-1eecc30f269e?auto=format&fit=crop&w=700&q=80" },
+      { name: "French Beans", category: "Vegetables", price: 50, unit: "per pack", tag: "Farm fresh", image: "https://images.unsplash.com/photo-1567375698348-5d9d5ae99de0?auto=format&fit=crop&w=700&q=80" },
+      { name: "Peas", category: "Vegetables", price: 50, unit: "per pack", tag: "Fresh pick", image: "WhatsApp%20Image%202026-10-19%20at%2012.00.00%20PM.jpeg" },
+      { name: "Butternut", category: "Vegetables", price: 60, unit: "each", tag: "Farm fresh", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSqFMlgDW27gl7I-jE0afClebClX8QVQ1xyGYCXNg1KA&s=10" },
+      { name: "Okra", category: "Vegetables", price: 10, unit: "4 pieces", tag: "Farm fresh", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgdgcHXO6rXP2mvBUp7Tj1g4JaAeS6XSvhaj91Dwwpbg&s=10" },
+      { name: "Mini Pack Veggies", category: "Veggie packs", price: 50, unit: "per pack", tag: "Ready to cook", image: "mini-veggies-pack.png" },
+      { name: "Jumbo Pack Veggies", category: "Veggie packs", price: 100, unit: "per pack", tag: "Ready to cook", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=700&q=80" },
+      { name: "Ginger", category: "Customized Basket", price: 0, unit: "customer price", tag: "Custom basket", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy7TnSt5qmA4k86y_uS9kb4axm-m8ARHDt8al_jLyeIg&s=10", customPrice: true, defaultCustomPrice: 120 },
+      { name: "Garlic", category: "Customized Basket", price: 0, unit: "customer price", tag: "Custom basket", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZY3lKo-oR2xYT9EhHKZks3r-z1DKJyhr7MAq5xsMI2g&s=10", customPrice: true, defaultCustomPrice: 110 },
+      { name: "Cucumber", category: "Customized Basket", price: 0, unit: "customer price", tag: "Custom basket", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPSp1cgXTlxwFxhsprUIXRptc6onYoB-mHaeAe122xUg&s=10", customPrice: true, defaultCustomPrice: 90 },
+      { name: "Parsley", category: "Customized Basket", price: 0, unit: "customer price", tag: "Custom basket", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIoIC5OU1ZPZk1Xmufw1XJBsCRlEebd9MdJl3nqaxXqw&s=10", customPrice: true, defaultCustomPrice: 80 },
+      { name: "Mint", category: "Customized Basket", price: 0, unit: "customer price", tag: "Custom basket", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYZgoT-HG84mNv1qRm6oI6I8JH1QxbZQAdKm1XvYNwpA&s=10", customPrice: true, defaultCustomPrice: 70 },
+      { name: "Yams", category: "Customized Basket", price: 0, unit: "customer price", tag: "Custom basket", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAnYpoXeGpTApkooDN6EC5DQ0Wv-o1f7aA4haEJVfGRw&s=10", customPrice: true, defaultCustomPrice: 140 },
+      { name: "Sweet Potatoes", category: "Customized Basket", price: 0, unit: "customer price", tag: "Custom basket", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6mT1V0gbZAvWZe3aFkMDyRLPxjWXy6itCx3tfNHFELw&s=10", customPrice: true, defaultCustomPrice: 130 }
+    ];
+    const vegetableProducts = products.filter((product) => product.category !== "Customized Basket");
+    const customProducts = products.filter((product) => product.category === "Customized Basket");
+    const categories = ["All produce", ...new Set(vegetableProducts.map((product) => product.category))];
+    const cart = {};
+    const grid = document.getElementById("product-grid");
+    const customGrid = document.getElementById("custom-product-grid");
+    const filters = document.getElementById("filters");
+    const searchInput = document.getElementById("product-search");
+    const drawer = document.getElementById("cart-drawer");
+    const overlay = document.getElementById("overlay");
+    const paystackPaymentUrl = "https://paystack.shop/pay/gm3oh60at9";
+    let activeCategory = "All produce";
+    let toastTimer;
+
+    function formatPrice(amount) { return `KSh ${new Intl.NumberFormat("en-KE").format(amount)}`; }
+
+    function renderFilters() {
+      filters.innerHTML = categories.map((category) => `<button class="filter-button${category === activeCategory ? " active" : ""}" aria-pressed="${category === activeCategory}" data-category="${category}">${category}</button>`).join("");
+    }
+
+    function renderProducts() {
+      const query = searchInput.value.trim().toLowerCase();
+      const shown = vegetableProducts.filter((product) => (activeCategory === "All produce" || product.category === activeCategory) && `${product.name} ${product.category}`.toLowerCase().includes(query));
+      grid.innerHTML = shown.length ? shown.map((product, index) => `
+        <article class="product-card" style="animation-delay:${index * 35}ms">
+          <div class="product-image-wrap"><img class="product-image" src="${product.image}" alt="Fresh ${product.name.toLowerCase()}" loading="lazy"><span class="product-tag">${product.tag}</span><button class="add-button" data-add="${products.indexOf(product)}" aria-label="Add ${product.name} to basket"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
+          <div class="product-info"><div class="product-category">${product.category}</div><div class="product-name-line"><span class="product-name">${product.name}</span><span class="product-price">${product.customPrice ? "Customer price" : formatPrice(product.price)}</span></div><div class="product-unit">${product.unit}</div></div>
+        </article>`).join("") : '<p class="no-results">Nothing in this harvest matches. Try another search.</p>';
+    }
+
+    function renderCustomProducts() {
+      customGrid.innerHTML = customProducts.length ? customProducts.map((product, index) => `
+        <article class="product-card" style="animation-delay:${index * 35}ms">
+          <div class="product-image-wrap"><img class="product-image" src="${product.image}" alt="Fresh ${product.name.toLowerCase()}" loading="lazy"><span class="product-tag">${product.tag}</span><button class="add-button" data-add="${products.indexOf(product)}" aria-label="Add ${product.name} to basket"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
+          <div class="product-info"><div class="product-category">${product.category}</div><div class="product-name-line"><span class="product-name">${product.name}</span><span class="product-price">Customer price</span></div><div class="product-unit">${product.unit}</div></div>
+        </article>`).join("") : '<p class="no-results">No customized basket items right now.</p>';
+    }
+
+    function cartQuantity() { return Object.values(cart).reduce((sum, item) => sum + (item.quantity || 0), 0); }
+    function addToCart(index) {
+      const product = products[index];
+      if (product.customPrice) {
+        const enteredPrice = window.prompt(`Enter the customer price for ${product.name} in KSh:`, product.defaultCustomPrice || "0");
+        if (enteredPrice === null) return;
+        const numericPrice = Number(enteredPrice);
+        if (!Number.isFinite(numericPrice) || numericPrice < 0) {
+          showToast("Please enter a valid price for this item.");
+          return;
+        }
+        const existing = cart[index] || { quantity: 0, price: numericPrice };
+        existing.quantity += 1;
+        existing.price = numericPrice;
+        cart[index] = existing;
+      } else {
+        const existing = cart[index] || { quantity: 0, price: product.price };
+        existing.quantity += 1;
+        existing.price = product.price;
+        cart[index] = existing;
+      }
+      renderCart();
+      showToast(`${product.name} added to your basket`);
+    }
+    function updateQuantity(index, change) {
+      const current = cart[index];
+      if (!current) return;
+      current.quantity += change;
+      if (current.quantity <= 0) delete cart[index];
+      renderCart();
+    }
+    function renderCart() {
+      const count = cartQuantity();
+      const items = Object.entries(cart).map(([index, item]) => ({ product: products[index], index, quantity: item.quantity, price: item.price ?? products[index].price }));
+      const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      document.getElementById("cart-count").textContent = count;
+      document.getElementById("drawer-count").textContent = `(${count})`;
+      document.getElementById("subtotal").textContent = formatPrice(subtotal);
+      document.getElementById("paystack-checkout").disabled = count === 0;
+      document.getElementById("cart-items").innerHTML = items.length ? items.map(({ product, index, quantity, price }) => `
+        <div class="cart-item"><img src="${product.image}" alt=""><div><div class="cart-item-name">${product.name}</div><div class="cart-item-price">${product.customPrice ? `Custom price: ${formatPrice(price)}` : `${formatPrice(price)} · ${product.unit}`}</div><div class="quantity-controls"><button type="button" data-quantity="${index}" data-change="-1" aria-label="Remove one ${product.name}">−</button><span>${quantity}</span><button type="button" data-quantity="${index}" data-change="1" aria-label="Add one ${product.name}">+</button></div></div><span class="cart-item-total">${formatPrice(price * quantity)}</span></div>`).join("") : '<p class="empty-cart">Your basket is waiting for something good.</p>';
+    }
+    function setDrawer(open) {
+      drawer.classList.toggle("open", open);
+      overlay.classList.toggle("open", open);
+      drawer.setAttribute("aria-hidden", String(!open));
+      document.body.style.overflow = open ? "hidden" : "";
+      if (open) document.getElementById("close-cart").focus();
+    }
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2300);
+    }
+
+    filters.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+      activeCategory = button.dataset.category;
+      renderFilters();
+      renderProducts();
+    });
+    grid.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-add]");
+      if (button) addToCart(Number(button.dataset.add));
+    });
+    customGrid.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-add]");
+      if (button) addToCart(Number(button.dataset.add));
+    });
+    document.getElementById("cart-items").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-quantity]");
+      if (button) updateQuantity(Number(button.dataset.quantity), Number(button.dataset.change));
+    });
+    searchInput.addEventListener("input", renderProducts);
+    document.getElementById("search-focus").addEventListener("click", () => {
+      searchInput.focus();
+      document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
+    });
+    document.getElementById("open-cart").addEventListener("click", () => setDrawer(true));
+    document.getElementById("close-cart").addEventListener("click", () => setDrawer(false));
+    overlay.addEventListener("click", () => setDrawer(false));
+    document.getElementById("paystack-checkout").addEventListener("click", () => {
+      if (!Object.keys(cart).length) return;
+      const subtotal = Object.entries(cart).reduce((sum, [index, item]) => sum + (item.price ?? products[index].price) * (item.quantity || 0), 0);
+      if (window.confirm(`Your basket total is ${formatPrice(subtotal)}. Continue to Paystack to complete payment?`)) {
+        window.location.assign(paystackPaymentUrl);
+      }
+    });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") setDrawer(false); });
+    renderFilters();
+    renderProducts();
+    renderCustomProducts();
+    renderCart();
+  </script>
+</body>
+</html>
